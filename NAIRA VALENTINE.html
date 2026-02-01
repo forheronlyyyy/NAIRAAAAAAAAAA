@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NAIRAAAAAAAAAA</title>
+
+  <style>
+    * {box-sizing: border-box;
+      font-family: Arial, sans-serif;}
+
+    body {margin: 0;
+      height: 100vh;
+      background: #ffdce2;
+      display: flex;
+      align-items: center;
+      justify-content: center;}
+
+    .box {background: white;
+      padding: 40px 30px;
+      width: 90%;
+      max-width: 520px;
+      border-radius: 30px;
+      text-align: center;}
+
+    h1 {color: #d81b48;
+      margin-bottom: 20px;
+      font-size: 32px;}
+
+    .emoji {font-size: 60px;
+      margin-bottom: 10px;}
+
+    .text {min-height: 26px;
+      font-size: 18px;
+      margin-bottom: 30px;
+      color: #444;}
+
+    .buttons {display: flex;
+      justify-content: center;
+      gap: 18px;}
+
+    button {border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.25s ease;}
+
+    .yesBtn {background: #3fb300;
+      color: white;
+      font-size: 22px;
+      padding: 14px 32px;}
+
+    .noBtn {background: #ff5a5a;
+      color: white;
+      font-size: 18px;
+      padding: 14px 28px;}
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+    <h1>Will you be my Valentine?</h1>
+
+    <div class="emoji" id="emoji">🐼</div>
+    <div class="text" id="text"></div>
+
+    <div class="buttons">
+      <button class="yesBtn" id="yes">Yes</button>
+      <button class="noBtn" id="no">No</button>
+    </div>
+  </div>
+
+  <script>
+    const prompts = [
+  ["🙁", "are you sure???"],
+  ["☹️", "are you sure sure like pakka sure??"],
+  ["😣", "are you like sure sure sure sure wala sure????"],
+  ["😖💔", "PLEASEEEE SAY YESSSSSSS"],
+  ["😫💔💔", "PLEASEEEE NAAAAAAAAAAAAA"],
+  ["🥺🥺🥺", "MAI AAPKE PER PDTA HU"],
+  ["🛐🛐🛐🛐", "OKAY I’M OFFICIALLY BEGGING"]];
+
+    const emoji = document.getElementById("emoji");
+    const text = document.getElementById("text");
+    const yes = document.getElementById("yes");
+    const no = document.getElementById("no");
+
+    let count = 0;
+
+    no.addEventListener("click", () => {
+        if (count < prompts.length) {
+        emoji.innerText = prompts[count][0];
+        text.innerText = prompts[count][1];
+        count++;}
+
+      // YES grows a LOT
+      const yesSize = 22 + count * 14;
+      yes.style.fontSize = yesSize + "px";
+      yes.style.padding =
+        (14 + count * 6) + "px " + (32 + count * 14) + "px";
+
+      // NO shrinks sideways + overall
+      const noWidth = Math.max(60, 28 - count * 3);
+      const noHeight = Math.max(10, 14 - count * 1.5);
+      const noFont = Math.max(10, 18 - count * 1.2);
+
+      no.style.padding = noHeight + "px " + noWidth + "px";
+      no.style.fontSize = noFont + "px";});
+
+    yes.addEventListener("click", () => {
+      document.body.innerHTML = `
+        <div style="
+          height:100vh;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          background:#ffdce2;
+          font-size:50px;
+          text-align:center;
+        ">
+         YAYAYAYAYAYAYAYAYAYYA HEHHEHEHEHEHEHHEHEEHEHE! I LOVEEEEEEEE YOUUUUU SOOOOOO MUCCHHHHHH <3
+        </div>`;});
+  </script>
+
+</body>
+</html>
+
