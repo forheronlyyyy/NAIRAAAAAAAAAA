@@ -5,53 +5,127 @@
   <title>NAIRAAAAAAAAAA</title>
 
   <style>
-    * {box-sizing: border-box;
-      font-family: Arial, sans-serif;}
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;600&family=Inter:wght@300;400&display=swap');
 
-    body {margin: 0;
+    * {box-sizing: border-box;
+      margin: 0;
+      padding: 0;}
+
+    body {font-family: 'Inter', sans-serif;
       height: 100vh;
-      background: #ffdce2;
+      background: #fffbf7;
       display: flex;
       align-items: center;
       justify-content: center;}
 
     .box {background: white;
-      padding: 40px 30px;
+      padding: 60px 40px;
       width: 90%;
-      max-width: 520px;
-      border-radius: 30px;
-      text-align: center;}
+      max-width: 480px;
+      border-radius: 4px;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);}
 
-    h1 {color: #d81b48;
-      margin-bottom: 20px;
-      font-size: 32px;}
-
-    .emoji {font-size: 60px;
-      margin-bottom: 10px;}
-
-    .text {min-height: 26px;
-      font-size: 18px;
+    h1 {font-family: 'Cormorant', serif;
+      color: #2a2a2a;
       margin-bottom: 30px;
-      color: #444;}
+      font-size: 32px;
+      font-weight: 400;
+      letter-spacing: 0.5px;}
+
+    .emoji {font-size: 52px;
+      margin-bottom: 12px;}
+
+    .text {min-height: 24px;
+      font-size: 15px;
+      margin-bottom: 40px;
+      color: #666;
+      font-weight: 300;}
 
     .buttons {display: flex;
       justify-content: center;
-      gap: 18px;}
+      gap: 12px;}
 
     button {border: none;
-      border-radius: 14px;
+      border-radius: 2px;
       cursor: pointer;
-      transition: all 0.25s ease;}
+      transition: all 0.2s ease;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.3px;}
 
-    .yesBtn {background: #3fb300;
+    .yesBtn {background: #2a2a2a;
       color: white;
-      font-size: 22px;
-      padding: 14px 32px;}
+      font-size: 15px;
+      padding: 14px 32px;
+      font-weight: 400;}
 
-    .noBtn {background: #ff5a5a;
-      color: white;
-      font-size: 18px;
-      padding: 14px 28px;}
+    .yesBtn:hover {background: #1a1a1a;}
+
+    .noBtn {background: transparent;
+      color: #999;
+      font-size: 15px;
+      padding: 14px 28px;
+      border: 1px solid #ddd;}
+
+    .noBtn:hover {border-color: #bbb;
+      color: #666;}
+
+    /* Celebration Page */
+    .celebration {height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fffbf7;
+      position: relative;
+      overflow: hidden;}
+
+    .celebration-content {text-align: center;
+      opacity: 0;
+      animation: fadeIn 1.2s ease forwards;}
+
+    .celebration-heart {font-size: 80px;
+      margin-bottom: 32px;
+      display: inline-block;
+      animation: gentlePulse 2s ease-in-out infinite;}
+
+    .celebration-text {font-family: 'Cormorant', serif;
+      color: #2a2a2a;
+      font-size: 36px;
+      font-weight: 300;
+      line-height: 1.6;
+      letter-spacing: 0.5px;
+      max-width: 600px;
+      padding: 0 20px;}
+
+    .celebration-subtitle {font-family: 'Inter', sans-serif;
+      color: #666;
+      font-size: 14px;
+      margin-top: 24px;
+      font-weight: 300;
+      letter-spacing: 1px;
+      text-transform: uppercase;}
+
+    /* Minimal floating elements */
+    .float-element {position: absolute;
+      width: 6px;
+      height: 6px;
+      background: #ffd4d4;
+      border-radius: 50%;
+      opacity: 0;
+      animation: gentleFloat 8s ease-in-out infinite;}
+
+    @keyframes fadeIn {
+      to {opacity: 1;}}
+
+    @keyframes gentlePulse {
+      0%, 100% {transform: scale(1);}
+      50% {transform: scale(1.08);}}
+
+    @keyframes gentleFloat {0%, 100% {
+        opacity: 0;
+        transform: translateY(0) translateX(0);}
+      10% { opacity: 0.6;}
+      90% {opacity: 0.6;}50% {transform: translateY(-40px) translateX(20px);}}
   </style>
 </head>
 
@@ -71,13 +145,13 @@
 
   <script>
     const prompts = [
-  ["🙁", "are you sure???"],
-  ["☹️", "are you sure sure like pakka sure??"],
-  ["😣", "are you like sure sure sure sure wala sure????"],
-  ["😖💔", "PLEASEEEE SAY YESSSSSSS"],
-  ["😫💔💔", "PLEASEEEE NAAAAAAAAAAAAA"],
-  ["🥺🥺🥺", "MAI AAPKE PER PDTA HU"],
-  ["🛐🛐🛐🛐", "OKAY I’M OFFICIALLY BEGGING"]];
+      ["🙏", "are you sure???"],
+      ["☹️", "are you sure sure like pakka sure??"],
+      ["😣", "are you like sure sure sure sure wala sure????"],
+      ["😖💔", "PLEASEEEE SAY YESSSSSSS"],
+      ["😫💔💔", "PLEASEEEE NAAAAAAAAAAAAA"],
+      ["🥺🥺🥺", "MAI AAPKE PER PDTA HU"],
+      ["🛐🛐🛐🛐", "OKAY I'M OFFICIALLY BEGGING"]];
 
     const emoji = document.getElementById("emoji");
     const text = document.getElementById("text");
@@ -87,40 +161,47 @@
     let count = 0;
 
     no.addEventListener("click", () => {
-        if (count < prompts.length) {
+      if (count < prompts.length) {
         emoji.innerText = prompts[count][0];
         text.innerText = prompts[count][1];
         count++;}
 
-      // YES grows a LOT
-      const yesSize = 22 + count * 14;
+      // YES gets MUCH bigger (15px -> 50px at prompt 7)
+      const yesSize = 15 + count * 5;
       yes.style.fontSize = yesSize + "px";
-      yes.style.padding =
-        (14 + count * 6) + "px " + (32 + count * 14) + "px";
+      yes.style.padding = (14 + count * 5) + "px " + (32 + count * 12) + "px";
 
-      // NO shrinks sideways + overall
-      const noWidth = Math.max(60, 28 - count * 3);
-      const noHeight = Math.max(10, 14 - count * 1.5);
-      const noFont = Math.max(10, 18 - count * 1.2);
+      // NO gets MUCH smaller (15px -> 8px at prompt 7)
+      const noWidth = Math.max(12, 28 - count * 4);
+      const noHeight = Math.max(6, 14 - count * 2);
+      const noFont = Math.max(8, 15 - count * 1);
 
       no.style.padding = noHeight + "px " + noWidth + "px";
       no.style.fontSize = noFont + "px";});
 
     yes.addEventListener("click", () => {
       document.body.innerHTML = `
-        <div style="
-          height:100vh;
-          display:flex;
-          align-items:center;
-          justify-content:center;
-          background:#ffdce2;
-          font-size:50px;
-          text-align:center;
-        ">
-         YAYAYAYAYAYAYAYAYAYYA HEHHEHEHEHEHEHHEHEEHEHE! I LOVEEEEEEEE YOUUUUU SOOOOOO MUCCHHHHHH <3
-        </div>`;});
+        <div class="celebration">
+          <div class="celebration-content">
+            <div class="celebration-heart">♡</div>
+            <div class="celebration-text">
+              I love you so much
+            </div>
+            <div class="celebration-subtitle">Always & Forever</div>
+          </div>
+        </div>
+      `;
+
+      // Add minimal floating elements
+      for (let i = 0; i < 12; i++) {
+        const float = document.createElement('div');
+        float.className = 'float-element';
+        float.style.left = Math.random() * 100 + '%';
+        float.style.top = Math.random() * 100 + '%';
+        float.style.animationDelay = Math.random() * 4 + 's';
+        float.style.animationDuration = (Math.random() * 4 + 6) + 's';
+        document.querySelector('.celebration').appendChild(float);}});
   </script>
 
 </body>
 </html>
-
